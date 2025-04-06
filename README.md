@@ -20,11 +20,7 @@
 
 ## Download Stats
 
-To help us track the popularity and usage of OpenGPA, we now keep track of the number of source code downloads. Below is the current download count badge:
-
-[![Downloads](https://img.shields.io/github/downloads/AL-DN/OpenGPA/total)](https://github.com/AL-DN/OpenGPA/releases)
-
-> Note: The badge reflects the total number of downloads of the latest release from GitHub.
+# [![Downloads](https://img.shields.io/github/downloads/AL-DN/OpenGPA/total)](https://github.com/AL-DN/OpenGPA/releases)
 
 ---
 
@@ -47,16 +43,13 @@ To get started with **OpenGPA**, follow these steps:
    - Visit [Java Downloads](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) and install the appropriate version of Java for Windows.
    - Follow the installation instructions and ensure that `java` is added to your system's PATH environment variable.
 
-2. **Clone the Repository**:
-   - Clone the repository from GitHub using the following command:
-     ```bash
-     git clone https://github.com/your-username/OpenGPA.git
-     ```
+2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
+
 
 3. **Navigate to the Project Folder**:
    - Open the Command Prompt and navigate to the project folder:
      ```bash
-     cd OpenGPA
+     cd folder-name
      ```
 
 4. **Run the Application**:
@@ -73,16 +66,12 @@ To get started with **OpenGPA**, follow these steps:
      brew install openjdk@11
      ```
 
-2. **Clone the Repository**:
-   - Clone the repository using the command:
-     ```bash
-     git clone https://github.com/your-username/OpenGPA.git
-     ```
+2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
 3. **Navigate to the Project Folder**:
    - In the Terminal, navigate to the project directory:
      ```bash
-     cd OpenGPA
+     cd folder-name
      ```
 
 4. **Run the Application**:
@@ -99,16 +88,12 @@ To get started with **OpenGPA**, follow these steps:
      sudo apt install openjdk-11-jdk
      ```
 
-2. **Clone the Repository**:
-   - Clone the repository using:
-     ```bash
-     git clone https://github.com/your-username/OpenGPA.git
-     ```
+2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
 3. **Navigate to the Project Folder**:
    - Change the directory to the project folder:
      ```bash
-     cd OpenGPA
+     cd folder-name
      ```
 
 4. **Run the Application**:
