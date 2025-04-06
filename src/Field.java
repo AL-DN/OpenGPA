@@ -25,7 +25,7 @@ public class Field {
         this.name = name;
     }
     public float getWeight() {
-        return weight;
+        return Math.round(weight);
     }
     public void setWeight(Scanner scanner) {
         boolean valid = false;
@@ -59,7 +59,7 @@ public class Field {
             if (scanner.hasNextInt()) {
                 num = scanner.nextInt();
                 scanner.nextLine();
-                if ( num > 0 ) {
+                if ( num >= 0 ) {
                     this.dropPolicy = num;
                     valid = true;
                 } else {
@@ -73,7 +73,7 @@ public class Field {
     }
 
     public float getOverallScore() {
-        return overall_score;
+        return Math.round(overall_score);
     }
     public void setOverallScore(float overall_score) {
         this.overall_score = overall_score;
@@ -160,7 +160,6 @@ public class Field {
                 case 4:
                     System.out.println("Enter score to add: ");
                     addScore(scanner);
-                    scanner.nextLine();  
                     break;
                 case 5:
                     System.out.println("Enter score to remove: ");
@@ -177,28 +176,25 @@ public class Field {
                     System.out.println("Exiting...");
                     flag = false;
                     break;
-                default:
-                    System.out.println("Invalid Option, please enter an integer (i.e 1 ) \n");
-                    break;
             }
         }
-        
     }
 
     public void listScores() {
         System.out.println("Scores: \t");
         int idx = 0;
         for (Float score : scores) {
-            System.out.println("Score "+idx+": "+score+", ");
+            System.out.println("Score "+idx+": "+score);
+            idx++;
         }
     }
 
     // displays fields information to user
     public void show() {
         System.out.println("Name: " + getName());
-        System.out.println("Weight: " + Math.round(getWeight()*100) + "%");
+        System.out.println("Weight: " + getWeight()*100 + "%");
         System.out.println("Drop Policy: " + getDropPolicy());
-        System.out.println("Overall Score: " + Math.round(getOverallScore())+ "%");
+        System.out.println("Overall Score: " +getOverallScore()+ "%");
         listScores();
         System.out.println("\n");
         
@@ -207,11 +203,11 @@ public class Field {
     public void calcTotalScore() {
 
         if(scores.size() > 0 ) {
-            int sum = 0;
+            float sum = 0;
             for (float score: scores) {
                 sum += score;
             }
-            setOverallScore(sum); 
+            setOverallScore(sum/scores.size()); 
         } 
         
         //TODO: When implemented the drop scores into the calculation there is multiple approaches
