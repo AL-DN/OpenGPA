@@ -2,8 +2,17 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.time.LocalDate;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Semester {
+
+
+public class Semester implements Serializable{
+    private static final long serialVersionUID = 523701535546027499L; // Define serialVersionUID
     private String term;
     private int year;
     private float overall_score;
@@ -77,7 +86,9 @@ public class Semester {
             System.out.println("2. Delete Course ");
             System.out.println("3. Edit Course ");
             System.out.println("4. Display Semester ");
-            System.out.println("5. Exit \n");
+            System.out.println("5. Save");
+            System.out.println("6. Load");
+            System.out.println("7. Exit \n");
             System.out.println("Pick an Option: ");
 
             // if scanner detects token is not an integer 
@@ -144,6 +155,12 @@ public class Semester {
                     show();
                     break;
                 case 5:
+                    save();
+                    break;
+                case 6:
+                    load();
+                    break;
+                case 7:
                     System.out.println("Exiting...");
                     // save method
                     flag = false;
@@ -186,6 +203,30 @@ public class Semester {
         // 3. insert at end , do not sort, iterate through array summing all vaues abnd saving minium values in array of size dropPolicy then at the end subract by the arrays total and devide by ther sie of scores-dropPoloicy
     }
 
+    public void save() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("semester.dat"))) {
+            out.writeObject(this);
+            System.out.println("Yout semester has been saved!");
+        } catch (IOException e) {
+            System.out.println("Error saving semester: " + e.getMessage());
+        }
+    }
+
+    public void load() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("semester.dat"))) {
+            Semester loadedSemester = (Semester) in.readObject();
+            this.term = loadedSemester.term;
+            this.year = loadedSemester.year;
+            this.overall_score = loadedSemester.overall_score;
+            this.courses = loadedSemester.courses;
+            System.out.println("Yout semester has been loaded!");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading courses: " + e.getMessage());
+        }
+    }
+
+
+  
 
 
 

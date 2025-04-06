@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Course {
+public class Course implements Serializable{
     private String name;
     private float overall_score;
     private LinkedList<Field> fields;

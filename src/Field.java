@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Field {
+public class Field implements Serializable{
     private String name;
     private float weight;
     private int dropPolicy;
