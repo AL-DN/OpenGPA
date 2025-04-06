@@ -35,7 +35,7 @@ public class Course {
 
     // removes field from course if it has the same name specified
     public void removeField(String name) {
-        fields.removeIf(field -> getName().equalsIgnoreCase(name));
+        fields.removeIf(field -> field.getName().equalsIgnoreCase(name));
     }
     
     // creates new field based on user input
@@ -141,7 +141,7 @@ public class Course {
     public void calcTotalScore() {
 
         if(fields.size() > 0 ) {
-            float sum = 0;
+            int sum = 0;
             for (Field field: fields) {
                 sum += field.getOverallScore();
             }

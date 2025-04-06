@@ -4,8 +4,8 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-        Course field = Course.createCourse(scanner);
-        field.menu(scanner);
+        Semester sm = Semester.createSemester(scanner);
+        sm.menu(scanner);
         scanner.close();
     }
 }

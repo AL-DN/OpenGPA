@@ -1,5 +1,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.time.LocalDate;
+
 
 public class Semester {
     private String term;
@@ -8,20 +10,38 @@ public class Semester {
     private LinkedList<Course> courses;
     
     // default constructor
-    public Course() {
+    public Semester() {
         this.term = "default";
-        this.year = 2025
+        this.year = 2025;
         this.overall_score = 100;
         this.courses = new LinkedList<>();
     }
 
     // Getters and Setters 
-    public String getName() {
-          return name;
+    public String getTerm() {
+          return term;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTerm() {
+        LocalDate currentDate = LocalDate.now();
+        int month = currentDate.getMonthValue();
+        if (month >= 9 && month <= 12) {
+            this.term = "Fall";
+        }
+        else if (month >= 1 && month <= 5) {
+            this.term = "Spring";
+        } else {
+            System.out.println("We do not support winter or summer classes. Take a break learn on your own. Just chill...");
+        }
     }
+    public int getYear() {
+        return year;
+    }
+    public void setYear() {
+        LocalDate currentDate = LocalDate.now();
+        int yr = currentDate.getYear();
+        this.year = yr;
+    }
+    
     public float getOverallScore() {
         return Math.round(overall_score);
     }
@@ -31,89 +51,101 @@ public class Semester {
 
     /*------------------------------------- Class Methods -------------------------------------*/
 
-    public void addField(Field field) {
-        fields.add(field);
+    public void addCourse(Course course) {
+        courses.add(course);
     }
 
     // removes field from course if it has the same name specified
-    public void removeField(String name) {
-        fields.removeIf(field -> getName().equalsIgnoreCase(name));
+    public boolean removeCourse(String name) {
+        return courses.removeIf( course->course.getName().equalsIgnoreCase(name));
     }
     
     // creates new field based on user input
-    public static Course createCourse(Scanner scanner) {
-        Course course = new Course();
-        System.out.println("What is the name of the Course? (i.e Physics II): ");
-        course.setName(scanner.nextLine());
-        return course;
+    public static Semester createSemester(Scanner scanner) {
+        Semester semester = new Semester();
+        semester.setTerm();
+        semester.setYear();
+        return semester;
     }
 
     public void menu(Scanner scanner) {
         boolean flag = true;
 
         while(flag) {
-            System.out.println("\nCourse Menu:");
-            System.out.println("1. Edit Name");
-            System.out.println("2. Add Field to Course");
-            System.out.println("3. Delete Field ");
-            System.out.println("4. Edit Field ");
-            System.out.println("5. Display Course ");
-            System.out.println("6. Exit \n");
+            System.out.println("\nSemester Menu:");
+            System.out.println("1. Add Course");
+            System.out.println("2. Delete Course ");
+            System.out.println("3. Edit Course ");
+            System.out.println("4. Display Semester ");
+            System.out.println("5. Exit \n");
             System.out.println("Pick an Option: ");
 
+            // if scanner detects token is not an integer 
             if(!scanner.hasNextInt()) {
                 System.out.println("Invalid Option, please enter an integer (i.e 1 ) \n");
                 scanner.next();
                 continue;
             }
-
+            
+            // otherwise it allows a safe reading of integer token
             int option = scanner.nextInt();
             scanner.nextLine();
             System.out.println("\n");
             switch (option) {
                 case 1:
-                    System.out.println("Enter new name: ");
-                    setName(scanner.nextLine());
+                    System.out.println("Fill out Course Properties");
+                    Course new_course = Course.createCourse(scanner);
+                    addCourse(new_course);
                     break;
                 case 2:
-                    System.out.println("Fill out Field Properties");
-                    Field new_field = Field.createField(scanner);
-                    addField(new_field);
-                    break;
-                case 3:
-                    System.out.println("Enter the field's name you want to remove: ");
-                    removeField(scanner.nextLine());
-                    break;
-                case 4:
-                    listFields();
                     boolean found = false;
                     while(!found) {
-                        System.out.println("Enter the Field you want to edit(exit: to exit): ");
+                        System.out.println("Enter the field's name you want to remove(exit: to exit): ");
                         String input = scanner.nextLine();
                         if(input.equals("exit")) {
                             break;
                         }
-                        for (Field field: fields) {
-                            if(field.getName().equalsIgnoreCase(input)) {
-                                field.menu(scanner);
+
+                        if(removeCourse(input)) {
+                            found = true;
+                            break;
+                        } else {
+                            System.out.println("Course not found. Please ensure correct spelling!");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    listCourses();
+                    found = false;
+                    while(!found) {
+                        System.out.println("Enter the Course you want to edit(exit: to exit): ");
+                        String input = scanner.nextLine();
+                        if(input.equals("exit")) {
+                            break;
+                        }
+                        for (Course course: courses) {
+                            if(course.getName().equalsIgnoreCase(input)) {
+                                course.menu(scanner);
                                 found = true;
                                 break;
                             }
                         }
                         if (!found) {
-                            System.out.println("Field not found. Please ensure correct spelling!");
+                            System.out.println("Course not found. Please ensure correct spelling!");
                         }
                     }
 
                     break;
-                case 5:
+                case 4:
                     // only calculates when the use wishes to see it
                     // much faster than original approach of calc when it whenever new is added 
                     calcTotalScore();
                     show();
                     break;
-                case 6:
+                case 5:
                     System.out.println("Exiting...");
+                    // save method
                     flag = false;
                     break;
             }
@@ -121,13 +153,11 @@ public class Semester {
         
     }
 
-    public void listFields() {
-        System.out.println("Fields:");
-        for (Field field : fields) {
-            System.out.println("Name: " + field.getName());
-            System.out.println("Weight: " + field.getWeight()*100 + "%");
-            System.out.println("Drop Policy: " + field.getDropPolicy());
-            System.out.println("Overall Score: " + field.getOverallScore());
+    public void listCourses() {
+        System.out.println("Courses:");
+        for (Course course : courses) {
+            System.out.println("Name: " + course.getName());
+            System.out.println("Overall Score: " + course.getOverallScore());
             System.out.println("\n");
         }
         System.out.println("\n");
@@ -135,22 +165,22 @@ public class Semester {
 
     // displays fields information to user
     public void show() {
-        System.out.println(getName());
-        System.out.println("Course Grade: " + getOverallScore() +"%\n");
-        listFields();
+        System.out.println(getTerm() +" Semester " + getYear());
+        System.out.println("Semester Grade: " + getOverallScore() +"%\n");
+        listCourses();
     }
 
     public void calcTotalScore() {
 
-        if(fields.size() > 0 ) {
-            float sum = 0;
-            for (Field field: fields) {
-                sum += field.getOverallScore();
+        if(courses.size() > 0 ) {
+            int sum = 0;
+            for (Course course: courses) {
+                sum += course.getOverallScore();
             }
-            setOverallScore(sum / fields.size()); 
+            setOverallScore(sum / courses.size()); 
         } 
 
-        //TODO: When implemented the drop scores into the calculation there is multiple approaches
+        // TODO: When implemented the drop scores into the calculation there is multiple approaches
         // 1. While Inserting maintain ascending order, then just start after dropPolicy to drop those scores
         // 2. Insert at the end always, then sort in ascneding order, then start after droppolicy
         // 3. insert at end , do not sort, iterate through array summing all vaues abnd saving minium values in array of size dropPolicy then at the end subract by the arrays total and devide by ther sie of scores-dropPoloicy
