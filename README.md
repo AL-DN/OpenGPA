@@ -1,6 +1,6 @@
 # OpenGPA
 
-**OpenGPA** is a GPA calculator designed to provide users with a consistent outlook on their GPA. Many GPA calculators fail to offer features like separate fields for quizzes, exams, homework, etc., requiring users to calculate these components each time, which can be tedious. Additionally, most applications don’t allow users to save their calculations, making it even more frustrating to keep track of progress throughout the semester. **OpenGPA** addresses these issues by allowing users to save calculations and easily manage their grades in one place.
+**OpenGPA** is the ultimate GPA calculator that lets you track and manage your grades effortlessly. Unlike most calculators, it offers separate fields for quizzes, exams, homework, and more, eliminating the need for tedious manual calculations. Plus, with the ability to save your progress, OpenGPA ensures you never lose track of your GPA throughout the semester. Say goodbye to the hassle and stay organized with OpenGPA!
 
 ---
 
