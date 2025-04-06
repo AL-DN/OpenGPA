@@ -20,7 +20,7 @@
 
 ## Download Stats
 
-# [![Downloads](https://img.shields.io/github/downloads/AL-DN/OpenGPA/total)](https://github.com/AL-DN/OpenGPA/releases)
+[![Downloads](https://img.shields.io/github/downloads/AL-DN/OpenGPA/v1.0/total?size=large)](https://github.com/AL-DN/OpenGPA/releases/tag/v1.0)
 
 ---
 
