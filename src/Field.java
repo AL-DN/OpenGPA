@@ -6,13 +6,14 @@ public class Field {
     private float weight;
     private int dropPolicy;
     private float overall_score;
-    public LinkedList<Integer> scores;
+    private LinkedList<Float> scores;
     
-    // Constructor
-    public Field(String name, float weight, int dropPolicy) {
-        this.name = name;
-        this.weight = weight;
-        this.dropPolicy = dropPolicy;
+    // default contructor
+    public Field() {
+        this.name = "default";
+        this.weight = 0;
+        this.dropPolicy = 0;
+        this.overall_score = 100;
         this.scores = new LinkedList<>();
     }
 
@@ -26,15 +27,51 @@ public class Field {
     public float getWeight() {
         return weight;
     }
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public void setWeight(Scanner scanner) {
+        boolean valid = false;
+        float num = 0;
+
+        while(!valid) {
+            if (scanner.hasNextFloat()) {
+                num = scanner.nextFloat();
+                scanner.nextLine();
+                if ( num > 0 && num <= 1) {
+                    this.weight = num;
+                    valid = true;
+                } else {
+                    System.out.println("Invalid input. Please ensure the weight is between 0 and 1.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a float.");
+                scanner.next(); 
+            }
+        }  
+        
     }
     public int getDropPolicy() {
         return dropPolicy;
     }
-    public void setDropPolicy(int dropPolicy) {
-        this.dropPolicy = dropPolicy;
+    public void setDropPolicy(Scanner scanner) {
+        boolean valid = false;
+        int num = 0;
+
+        while(!valid) {
+            if (scanner.hasNextInt()) {
+                num = scanner.nextInt();
+                scanner.nextLine();
+                if ( num > 0 ) {
+                    this.dropPolicy = num;
+                    valid = true;
+                } else {
+                    System.out.println("Invalid input. Please ensure the drop policy is above 0. ");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter an integer.");
+                scanner.next(); 
+            }
+        }
     }
+
     public float getOverallScore() {
         return overall_score;
     }
@@ -44,19 +81,44 @@ public class Field {
 
     /*------------------------------------- Class Methods -------------------------------------*/
 
+    public void addScore(Scanner scanner) {
+        boolean valid = false;
+        // needs to be flaot in case of scores with decimals
+        float score = 0;
+
+        while(!valid) {
+            if (scanner.hasNextFloat()) {
+                score = scanner.nextFloat();
+                scanner.nextLine();
+                if ( score >= 0 && score <=100 ) {
+                    scores.add(score);                    
+                    valid = true;
+                } else {
+                    System.out.println("Invalid input. Please ensure score is between 0 and 100. ");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a float.");
+                scanner.next(); 
+            }
+        }
+        
+    }
+
+    public void removeScore(float score) {
+        scores.remove(Float.valueOf(score));
+    }
+    
     
     // creates new field based on user input
     public static Field createField(Scanner scanner) {
+        Field field = new Field();
         System.out.println("What is the name of the field? (i.e Quiz, Homework,etc): ");
-        String name = scanner.nextLine();
-        System.out.println("What is the weight? (i.e 0.2 == 20%): ");
-        float weight = scanner.nextFloat();
-        scanner.nextLine();
-        System.out.println("How many can you drop?: ");
-        int dropPolicy = scanner.nextInt();
-        scanner.nextLine();
-        
-        return new Field(name,weight,dropPolicy);
+        field.setName(scanner.nextLine());
+        System.out.println("What is the weight? (i.e 0.2): ");
+        field.setWeight(scanner);
+        System.out.println("How many are you allowed to drop?: ");
+        field.setDropPolicy(scanner);
+        return field;
     }
 
     public void menu(Scanner scanner) {
@@ -72,6 +134,12 @@ public class Field {
             System.out.println("6. Display Field ");
             System.out.println("7. Exit \n");
 
+            if(!scanner.hasNextInt()) {
+                System.out.println("Invalid Option, please enter an integer (i.e 1 ) \n");
+                scanner.next();
+                continue;
+            }
+
             System.out.println("Pick an Option: ");
             int option = scanner.nextInt();
             scanner.nextLine();
@@ -79,35 +147,31 @@ public class Field {
             switch (option) {
                 case 1:
                     System.out.println("Enter new name: ");
-                    this.setName(scanner.nextLine());
+                    setName(scanner.nextLine());
                     break;
                 case 2:
                     System.out.println("Enter new weight: ");
-                    this.setWeight(scanner.nextFloat());
-                    scanner.nextLine();
+                    setWeight(scanner);
                     break;
                 case 3:
                     System.out.println("Enter new drop policy: ");
-                    this.setDropPolicy(scanner.nextInt());
-                    scanner.nextLine();
+                    setDropPolicy(scanner);
                     break;
                 case 4:
                     System.out.println("Enter score to add: ");
-                    int score = scanner.nextInt();
-                    scanner.nextLine();
-                    scores.add(score);
+                    addScore(scanner);
+                    scanner.nextLine();  
                     break;
                 case 5:
                     System.out.println("Enter score to remove: ");
-                    int remove_score = scanner.nextInt();
+                    removeScore(scanner.nextFloat());
                     scanner.nextLine(); 
-                    scores.remove(Integer.valueOf(remove_score));
                     break;
                 case 6:
                     // only calculates when the use wishes to see it
                     // much faster than original approach 
-                    this.calcTotalScore();
-                    this.show();
+                    calcTotalScore();
+                    show();
                     break;
                 case 7:
                     System.out.println("Exiting...");
@@ -123,28 +187,33 @@ public class Field {
 
     public void listScores() {
         System.out.println("Scores: \t");
-        for (Integer score : scores) {
-            System.out.println(score + ", ");
+        int idx = 0;
+        for (Float score : scores) {
+            System.out.println("Score "+idx+": "+score+", ");
         }
     }
 
     // displays fields information to user
-    public  void show() {
-        System.out.println(this.getName() + " | " + this.getWeight() + " | " + this.getDropPolicy() +  " | " + this.getDropPolicy() +"\n");
+    public void show() {
+        System.out.println("Name: " + getName());
+        System.out.println("Weight: " + Math.round(getWeight()*100) + "%");
+        System.out.println("Drop Policy: " + getDropPolicy());
+        System.out.println("Overall Score: " + Math.round(getOverallScore())+ "%");
         listScores();
+        System.out.println("\n");
         
     }
 
     public void calcTotalScore() {
 
-        int sum = 0;
-
-        for (int score:scores) {
-            sum += score;
-        }
-
-        this.setOverallScore(sum / scores.size()); 
-
+        if(scores.size() > 0 ) {
+            int sum = 0;
+            for (float score: scores) {
+                sum += score;
+            }
+            setOverallScore(sum); 
+        } 
+        
         //TODO: When implemented the drop scores into the calculation there is multiple approaches
         // 1. While Inserting maintain ascending order, then just start after dropPolicy to drop those scores
         // 2. Insert at the end always, then sort in ascneding order, then start after droppolicy

@@ -4,9 +4,8 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-
         Field field = Field.createField(scanner);
-        field.show();
         field.menu(scanner);
+        scanner.close();
     }
 }
