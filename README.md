@@ -168,13 +168,5 @@ If you encounter a bug, please open an issue on the GitHub Issues page. When rep
 
 ---
 
-## Current Issues
-
-1. **Drop Policy**: The drop policy for calculating scores in each weighted category is currently not functioning as expected.
-2. **Semester GPA Calculation**: The semester GPA calculation does not properly account for credits when weighting the scores.
-3. **GPA Scale**: The application does not ask for the GPA scale, which may result in incorrect GPA calculations.
-4. **User Menu UI**: The user interface for the menu is not optimized and needs improvements for better usability.
-
----
 
 
