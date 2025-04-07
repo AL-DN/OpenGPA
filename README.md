@@ -46,17 +46,28 @@ To get started with **OpenGPA**, follow these steps:
 2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
 
-3. **Navigate to the Project Folder**:
-   - Open the Command Prompt and navigate to the project folder:
+3. **Navigate to the Source Code**:
+   - In the Terminal, navigate to the project directory:
      ```bash
-     cd folder-name
+     cd folder-name/src
      ```
-
-4. **Run the Application**:
+     
+4. **Compile App.java**:
+   - Once you're inside the src folder, compile App.java:
+     ```bash
+     javac App.java
+     ```
+     
+5. **Run the Application**:
    - Once you're inside the project folder, run the Main method to start the application:
      ```bash
      java Main
      ```
+6. Do not Forget to Save
+   - Before exiting the semester menu, save to avoid losing previously added scores, weighted categories, and courses
+
+7. To Re-enter OpenGPA
+   - Repeat steps 3-5 and then load previously saved data.
 
 ### Mac
 
@@ -68,17 +79,28 @@ To get started with **OpenGPA**, follow these steps:
 
 2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
-3. **Navigate to the Project Folder**:
+3. **Navigate to the Source Code**:
    - In the Terminal, navigate to the project directory:
      ```bash
-     cd folder-name
+     cd folder-name/src
+     ```
+4. **Compile App.java**:
+   - Once you're inside the src folder, compile App.java:
+     ```bash
+     javac App.java
      ```
 
-4. **Run the Application**:
+5. **Run the Application**:
    - Run the program using:
      ```bash
      java Main
      ```
+     
+6. Do not Forget to Save
+   - Before exiting the semester menu, save to avoid losing previously added scores, weighted categories, and courses
+
+7. To Re-enter OpenGPA
+   - Repeat steps 3-5 and then load previously saved data.
 
 ### Linux
 
@@ -90,17 +112,29 @@ To get started with **OpenGPA**, follow these steps:
 
 2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
-3. **Navigate to the Project Folder**:
-   - Change the directory to the project folder:
+3. **Navigate to the Source Code**:
+   - In the Terminal, navigate to the project directory:
      ```bash
-     cd folder-name
+     cd folder-name/src
+     ```
+     
+4. **Compile App.java**:
+   - Once you're inside the src folder, compile App.java:
+     ```bash
+     javac App.java
      ```
 
-4. **Run the Application**:
+5. **Run the Application**:
    - Start the application by running:
      ```bash
      java Main
      ```
+     
+6. Do not Forget to Save
+   - Before exiting the semester menu, save to avoid losing previously added scores, weighted categories, and courses
+
+7. To Re-enter OpenGPA
+   - Repeat steps 3-5 and then load previously saved data.
 
 ---
 
