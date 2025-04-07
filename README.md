@@ -166,6 +166,10 @@ If you encounter a bug, please open an issue on the GitHub Issues page. When rep
 - Include any relevant logs, error messages, or screenshots.
 - Mention the version of Java and any other dependencies you're using.
 
+## Known Issues (Fixable)
+1. Does not calculate GPA for semester just a grade for each course 0-100. Would need a credits field and a way to update a letter grade every time grade changes
+2. Non aesthetic UI 
+
 ---
 
 
