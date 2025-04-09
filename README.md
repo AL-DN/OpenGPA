@@ -202,7 +202,14 @@ If you encounter a bug, please open an issue on the GitHub Issues page. When rep
 
 ## Known Issues (Fixable)
 1. Does not calculate GPA for semester just a grade for each course 0-100. Would need a credits field and a way to update a letter grade every time grade changes
-2. Non aesthetic UI 
+2. Non aesthetic UI
+3. Fix getOverallScore 
+     - small weights like .05 will be displayed as 0.
+     - when the course calc total gets it it is getting the rounded integer so small weights will just be counted as 0
+4. Weights are being dissplayed in fields as floats
+5. Allow scores to be added using loops so you dont need to repress 4 over and over and count score number and display to user before prompting so that they can easily remember which one they are adding
+6. When it sorts it does so permanetly so when the user asks to display scores the are not in chronological. Covert to out of place sorting method
+
 
 ---
 
