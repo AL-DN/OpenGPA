@@ -46,17 +46,28 @@ To get started with **OpenGPA**, follow these steps:
 2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
 
-3. **Navigate to the Project Folder**:
-   - Open the Command Prompt and navigate to the project folder:
+3. **Navigate to the Source Code**:
+   - In the Terminal, navigate to the project directory:
      ```bash
-     cd folder-name
+     cd folder-name/src
      ```
-
-4. **Run the Application**:
+     
+4. **Compile App.java**:
+   - Once you're inside the src folder, compile App.java:
+     ```bash
+     javac App.java
+     ```
+     
+5. **Run the Application**:
    - Once you're inside the project folder, run the Main method to start the application:
      ```bash
      java Main
      ```
+6. Do not Forget to Save
+   - Before exiting the semester menu, save to avoid losing previously added scores, weighted categories, and courses
+
+7. To Re-enter OpenGPA
+   - Repeat steps 3-5 and then load previously saved data.
 
 ### Mac
 
@@ -68,17 +79,28 @@ To get started with **OpenGPA**, follow these steps:
 
 2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
-3. **Navigate to the Project Folder**:
+3. **Navigate to the Source Code**:
    - In the Terminal, navigate to the project directory:
      ```bash
-     cd folder-name
+     cd folder-name/src
+     ```
+4. **Compile App.java**:
+   - Once you're inside the src folder, compile App.java:
+     ```bash
+     javac App.java
      ```
 
-4. **Run the Application**:
+5. **Run the Application**:
    - Run the program using:
      ```bash
      java Main
      ```
+     
+6. Do not Forget to Save
+   - Before exiting the semester menu, save to avoid losing previously added scores, weighted categories, and courses
+
+7. To Re-enter OpenGPA
+   - Repeat steps 3-5 and then load previously saved data.
 
 ### Linux
 
@@ -90,17 +112,29 @@ To get started with **OpenGPA**, follow these steps:
 
 2. [Download the latest stable version of OpenGPA](https://github.com/AL-DN/OpenGPA/releases)
 
-3. **Navigate to the Project Folder**:
-   - Change the directory to the project folder:
+3. **Navigate to the Source Code**:
+   - In the Terminal, navigate to the project directory:
      ```bash
-     cd folder-name
+     cd folder-name/src
+     ```
+     
+4. **Compile App.java**:
+   - Once you're inside the src folder, compile App.java:
+     ```bash
+     javac App.java
      ```
 
-4. **Run the Application**:
+5. **Run the Application**:
    - Start the application by running:
      ```bash
      java Main
      ```
+     
+6. Do not Forget to Save
+   - Before exiting the semester menu, save to avoid losing previously added scores, weighted categories, and courses
+
+7. To Re-enter OpenGPA
+   - Repeat steps 3-5 and then load previously saved data.
 
 ---
 
@@ -165,6 +199,17 @@ If you encounter a bug, please open an issue on the GitHub Issues page. When rep
 - Provide steps to reproduce the issue.
 - Include any relevant logs, error messages, or screenshots.
 - Mention the version of Java and any other dependencies you're using.
+
+## Known Issues (Fixable)
+1. Does not calculate GPA for semester just a grade for each course 0-100. Would need a credits field and a way to update a letter grade every time grade changes
+2. Non aesthetic UI
+3. Fix getOverallScore 
+     - small weights like .05 will be displayed as 0.
+     - when the course calc total gets it it is getting the rounded integer so small weights will just be counted as 0
+4. Weights are being dissplayed in fields as floats
+5. Allow scores to be added using loops so you dont need to repress 4 over and over and count score number and display to user before prompting so that they can easily remember which one they are adding
+6. When it sorts it does so permanetly so when the user asks to display scores the are not in chronological. Covert to out of place sorting method
+
 
 ---
 
