@@ -1,8 +1,6 @@
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Course implements Serializable {
     // class members
